@@ -1,0 +1,53 @@
+body{
+    background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+    height: 100vh;
+
+}
+
+.contenedor{
+    display: grid;
+  justify-content: center;
+  align-items: center;
+
+    
+}
+.contain{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    color: white;
+    margin-top: 45px;
+    gap: 50px;
+    width: 800px;
+    
+}
+.contain p{
+font-size: 45px;
+line-height: 40px;
+
+}
+
+.contenedor img{
+    width: 400px;
+}
+
+.btn-activar{
+    width: 330px;
+    height: 70px;
+    border: none ;
+    border-radius: 25px;	
+    font-size: 30px;
+    color: #262626;    
+    background-color: #F9C700;
+    font-weight: 600;
+    margin-top: 30px;
+	
+	
+}
+
+.btn-activar:hover{
+	background-color: white;
+	color: #262626;
+	
+
+}

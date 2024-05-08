@@ -1,0 +1,132 @@
+<section class="menu-completo">
+<div class="container">
+<nav class="navbar navbar-expand-md  menu-estilo navbar-light justify-content-center  navbar-dark ">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/images/logo-gris.png" alt="" style="width: 90px;">
+    </a>
+    <button class="navbar-toggler btn-menu" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon "></span>
+    </button>
+  
+    <div class="collapse navbar-collapse menu-principal" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" [routerLink]="['/inicio']">INICIO</a>
+        </li>
+           
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/contactenos']">CONTACTENOS</a>
+        </li>
+
+        <li class="nav-item" *ngIf="indicativo  != 0 ">
+          <a class="nav-link" [routerLink]="['/wallet/my-wallet']">MY-WALLET</a>
+        </li>
+
+        
+          
+      </ul>
+      
+
+      <!-- Button trigger modal -->
+
+      <button  type="button" class="botoningresar" data-toggle="modal" data-target="#exampleModal" *ngIf="indicativo!= 0 " >
+        <ul class="navbar-nav d-flex justify-content-end ">                
+          <li class="nav-item ingresar">
+            <img src="../../../assets/images/cuenta.png" class="icono-ingreso" alt="">                 
+            <a class="ingresartxt"   (click)="actualizardatos()">MI CUENTA</a>
+          </li>         
+        </ul>
+        </button>
+
+      
+
+<!-- Modal -->
+<div class="modal fade col-12" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content perfilmodal">
+      
+      <div class="modal-body">
+
+        <div class="miperfil">
+          <h2>Mi perfil</h2>
+          <label for="ahorro"  class="col-12 campos">Mi email</label>
+          <input type="email" placeholder="{{emailuser}}" class=" col-12 " id="email" disabled>
+
+          <label for="ahorro"  class="col-12 actual"><strong>Nombre:</strong> {{nombreactual}}</label>
+          <input type="text" placeholder="Editar nombre" class=" col-8" [(ngModel)]="nombrenuevo">
+          
+         
+          <label for="ahorro"  class="col-12 actual"><strong>Edad:</strong>{{edadactual}}</label>
+          <input type="edad" placeholder="Editar edad" class=" col-8" [(ngModel)]="edadnuevo">
+
+         
+          <label for="ahorro"  class="col-12 actual"><strong>Ciudad:</strong>{{ciudadactual}}</label>
+          <input type="edad" placeholder="Editar ciudad" class=" col-8" [(ngModel)]="ciudadnuevo">
+        </div>
+
+        <div class="ahorro">
+          <br>
+          <h2>Mis metas</h2>
+          <label for="ahorro"  class="col-12">Mis metas de ahorro</label>
+          <select id="ahorro" name="ahorros" form="ahorros" class="col-12" [(ngModel)]="tahorronuevo">
+            <option value="" selected disabled>{{tahorroactual}}</option>
+            <option value="Invertir">Invertir</option>
+            <option value="Adquirir casa">Adquirir casa</option>
+            <option value="Adquirir carro">Adquirir carro</option>
+            <option value="Estudios">Estudios</option>
+            <option value="Libre-inversion">Libre inversion</option>
+          </select>
+          <label for="ingresos" class="col-12">Cantidad de ingresos</label>
+          <select id="ingresos" name="ingresos" form="ingresos" class="col-12" [(ngModel)]="csalarionuevo">
+            <option value="" selected disabled>{{csalarioactual}}</option>
+            <option value="-1">Menos de 1 SMLV</option>
+            <option value="1-2">Entre 1 y 2 SMLV  </option>
+            <option value="2-5">Entre 2 y 5 SMLV</option>
+            <option value="+5">Mas de 5 SMLV</option>            
+          </select>
+         
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+        <button type="button" class="btn btn-actualizar" (click)="agregardatos()">ACTUALIZAR</button>
+      </div>
+    </div>
+  </div>
+</div>
+      <button class="botoningresar" *ngIf="indicativo == 0">
+      <ul class="navbar-nav d-flex justify-content-end ">                
+        <li class="nav-item ingresar">
+          <img src="../../../assets/images/ingreso icono 1.png" class="icono-ingreso"alt="">     
+          
+          <a class="ingresartxt"  [routerLink]="['/ingresar']">INGRESAR</a>
+        </li>         
+      </ul>
+      </button>
+
+      <button class="botoningresar" *ngIf="indicativo!= 0 " >
+        <ul class="navbar-nav d-flex justify-content-end ">                
+          <li class="nav-item ingresar">
+            <img src="../../../assets/images/ingreso icono 1.png" class="icono-ingreso"alt="">     
+            
+            <a class="ingresartxt"  [routerLink]="['/ingresar']" (click)="logout()">LOGOUT</a>
+          </li>         
+        </ul>
+        </button>
+
+
+      
+   
+
+    </div>
+  </nav>
+  </div>
+</section>
+
+
+
+
+  

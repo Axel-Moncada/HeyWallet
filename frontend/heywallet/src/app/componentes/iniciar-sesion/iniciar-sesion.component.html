@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="card">
+        <div class="iniciar-sesion">
+            <h1>Iniciar Sesion</h1>
+            <div class="form-group">
+                <label for>Correo electronico</label>
+                <input type="email" [(ngModel)]="email">
+                
+                <label for="">Contraseña</label>
+                <input type="password" [(ngModel)]="password" class="contraseña">
+
+                <button class="btn-ingresar" (click)="iniciarSesion()">Iniciar sesion</button>
+                
+            </div>
+        </div>
+    </div>
+</div>

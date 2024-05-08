@@ -1,0 +1,342 @@
+<app-menu></app-menu>
+<body>
+    
+  
+<div class="container">
+    <section class="contenedor">
+        <h1>RESUMEN</h1>
+        <p>Ultimos 31 dias</p>
+        <div class="columna">
+          <h3>Deberias tener</h3>
+          <h2>{{totaldinero| currency}} </h2>
+      </div>
+        
+            <div class="gridresumen">
+                <div class="columna">
+                    <h3>Ingresos</h3>
+                    <h2>{{totalingresos | currency}} </h2>
+                </div>
+
+                <div  class="columna">
+                    <h3>Egresos</h3>
+                    <h2>{{totalegresosf | currency}}</h2>
+                </div>
+
+                <div  class="columna" [ngClass]="color">
+                    <h3>Ahorro</h3>
+                    <h2>{{totalahorros | currency}}</h2>
+                </div>
+
+            </div>
+
+    </section>
+
+    <section class="ingresos">
+            <div class="headering">
+                <div>
+                    <h1>INGRESOS</h1>
+                </div>
+                <div>
+
+                    <button class="btn btn-success btn-lg agregar" data-toggle="modal" data-target="#agregarIngresos">Agregar</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="agregarIngresos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar ingresos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          <form>
+                              <div class="form-row">
+                                <div class="col-12">
+                                  <input type="text" class="form-control" placeholder="Descripcion" 
+                                  [(ngModel)]="descripcionIngreso" name="desING">
+                                </div>
+                                <div class="col">
+                                  <input type="date" class="form-control" placeholder="Fecha" 
+                                  [(ngModel)]="fechaIngreso" name="fechaING">
+                                </div>
+                                <div class="col">
+                                  <input type="number" class="form-control" placeholder="Cantidad $"
+                                  [(ngModel)]="cantidadIngreso" name="cantING" >
+                                </div>
+                                
+                              </div>
+                            </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" 
+                        (click)="agregarIngreso()">Agregar Ingreso</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                </div>
+            </div>
+        <div class="tabla-ing">
+            <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col" class="col-1">#</th>
+                    <th scope="col" class="col-6">Descripcion</th>
+                    <th scope="col" class="col-3">Fecha</th>
+                    <th scope="col" class="col-2">Cantidad</th>
+                    <th scope="col" class="col-1">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of datosingreso ;index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.descripcion}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.cantidad | currency}}</td>
+                    <td><button class="btn btn-danger"(click) ="eliminarIngreso(item._id)">Eliminar</button></td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+        </div>
+       
+    </section>
+
+    <section class="ingresos">
+        <div class="headering">
+            <div>
+                <h1>EGRESOS</h1>
+            </div>
+            <div>
+              <button class="btn btn-success btn-lg agregar" data-toggle="modal" data-target="#agregarEgresos">Agregar</button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="agregarEgresos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Agregar Egresos</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-row">
+                              <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Descripcion"
+                                [(ngModel)]="descripcionEgreso" name="desEGR">
+                                
+                              </div>
+                              <div class="col">
+                                <input type="date" class="form-control" placeholder="Fecha"placeholder="Fecha"
+                                [(ngModel)]="fechaEgreso" name="fechaEGR">
+                              </div>
+                              <div class="col">
+                                <input type="number" class="form-control" placeholder="Cantidad $"
+                                [(ngModel)]="cantidadEgreso" name="cantEGR">
+                              </div>
+                              
+                            </div>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary"(click)="agregarEgreso()">Agregar Egreso</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    <div class="tabla-ing">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col" class="col-1">#</th>
+                <th scope="col" class="col-6">Descripcion</th>
+                <th scope="col" class="col-3">Fecha</th>
+                <th scope="col" class="col-2">Cantidad</th>
+                <th scope="col" class="col-1">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of datosegreso ;index as i">
+                <th scope="row">{{i+1}}</th>
+                    <td>{{item.descripcion}}</td>
+                    <td>{{item.fecha}}</td>
+                    <td>{{item.cantidad | currency}} </td>
+                <td><button class="btn btn-danger" (click) ="eliminarEgreso(item._id)">Eliminar</button></td>
+              </tr>
+             
+            </tbody>
+          </table>
+    </div>
+   
+    
+
+
+
+</section>
+
+
+<div class="aviso">
+    <div  class="ahorroaviso">
+        <div class="texto">
+            <h3 class="titulo">Deacuerdo a tus gastos puedes gastar</h3>
+        </div>
+
+        <div>
+            <h1>{{calcgastofi | currency}}</h1>
+        </div>
+    </div>
+
+
+    <div  class="ahorroaviso">
+        <div class="texto">
+            <h3 class="titulo">Deacuerdo a tus ingresos tienes que ahorrar el 30%</h3>
+        </div>
+
+        <div>
+            <h1>{{calcahorrof | currency}}</h1>
+        </div>
+    </div>    
+</div>
+
+
+
+
+<section class="micro">
+    <div class="card">
+        <h2>Gastos Hormiga</h2>
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col" class="col-1">#</th>
+                <th scope="col" class="col-4">Descripcion</th>
+                <th scope="col" class="col-5">Fecha</th>
+                <th scope="col" class="col-2">Cantidad</th>
+                <th scope="col" class="col-1">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of datosgh ;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.fecha}}</td>
+                <td>{{item.cantidad | currency}}</td>
+                <td><button class="btn btn-danger"(click) ="eliminarGH(item._id)">Eliminar</button></td>
+              </tr>
+              
+            </tbody>
+          </table>
+          <div class="botonagregar">
+            <button class="btn btn-success btn-lg agregar" data-toggle="modal" data-target="#agregarHormiga">Agregar</button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="agregarHormiga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Agregar Gasto Hormiga</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-row">
+                              <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Descripcion"
+                                [(ngModel)]="descripcionGH" name="desGH">
+                              </div>
+                              <div class="col">
+                                <input type="date" class="form-control" placeholder="Fecha"[(ngModel)]="fechaGH" name="fechaGH">
+                              </div>
+                              <div class="col">
+                                <input type="number" class="form-control" placeholder="Cantidad $"[(ngModel)]="cantidadGH" name="cantGH">
+                              </div>
+                              
+                            </div>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary"  (click)="agregarGH()">Agregar Gasto Hormiga</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Ahorros</h2>
+
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col" class="col-1">#</th>
+                <th scope="col" class="col-4">Descripcion</th>
+                <th scope="col" class="col-6">Fecha</th>
+                <th scope="col" class="col-2">Cantidad</th>
+                <th scope="col" class="col-1">Accion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of datosaho ;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.descripcion}}</td>
+                <td>{{item.fecha}}</td>
+                <td>{{item.cantidad | currency}}</td>               
+                <td><button class="btn btn-danger"(click) ="eliminarAHO(item._id)">Eliminar</button></td>
+              </tr>
+              
+            </tbody>
+          </table>
+          <div>
+            <button class="btn btn-success btn-lg agregar" data-toggle="modal" data-target="#agregarAhorro">Agregar</button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="agregarAhorro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Agregar ahorro</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-row">
+                              <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Descripcion"
+                                [(ngModel)]="descripcionAHO" name="desAHO">
+                              </div>
+                              <div class="col">
+                                <input type="date" class="form-control" placeholder="Fecha"[(ngModel)]="fechaAHO" name="fechaAHO">
+                              </div>
+                              <div class="col">
+                                <input type="number" class="form-control" placeholder="Cantidad $"[(ngModel)]="cantidadAHO" name="cantAHO" >
+                              </div>
+                              
+                            </div>
+                          </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary"  (click)="agregarAHO()">Agregar Ahorro</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</section>
+</div>
+</body>

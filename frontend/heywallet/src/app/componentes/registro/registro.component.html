@@ -1,0 +1,21 @@
+<div class="registrarse">
+    <h1>Registrarse</h1>
+    
+<form>
+    <label>Nombre</label>
+    <input type="text" [(ngModel)]="nombre" name="name" >
+
+    <label>Correo electronico</label>
+    <input type="email" [(ngModel)]="email"  name="email" >
+
+    <label for="">Contraseña</label>
+    <input type="password" [(ngModel)]="password" name="contraseña" class="contraseña">
+
+    <label for="">Confirmar contraseña</label>
+    <input type="password"  [(ngModel)]="passconfirmed" name="contraseñac" class="contraseña"> 
+
+    <button class="btn-ingresar" (click)="crearUsuario()">Registrarse</button>
+    
+
+</form>
+</div>
